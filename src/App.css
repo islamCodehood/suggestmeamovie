@@ -1,0 +1,82 @@
+/*GLOBAL*/
+* {
+  /* font-family: 'Anton', sans-serif !important; */
+  font-family: 'Paytone One', sans-serif !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+/**************************/
+
+/*Sections*/
+.hidden {
+  display: none !important;
+}
+
+
+
+.views {
+  margin: auto;
+  width: 95vw;
+}
+
+.rating-star {
+  color: gold;
+}
+.mobile-display {
+  display: block;
+  margin-top: 25px;
+}
+.non-mobile-display {
+  display: none;
+}
+
+.fab {
+  position: fixed !important;
+  right: 20px;
+  bottom: 20px;
+
+}
+
+
+.cast {
+  height: 140px;
+  width: 112px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  /* .mobile-display {
+    display: none;
+  }
+  .non-mobile-display {
+    display: block;
+    margin-top: 50px;
+    
+  } */
+  .non-mobile-display h2 {
+    font-size: 2rem !important;
+  }
+  .views {
+    width: 90vw;
+  }
+}
+
+@media screen and (min-width: 958px) {
+  .mobile-display {
+    display: none;
+  }
+  .non-mobile-display {
+    display: block;
+    margin-top: 50px;
+    
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .views {
+    width: 80vw;
+  }
+}
