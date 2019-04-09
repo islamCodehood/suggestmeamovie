@@ -77,7 +77,7 @@ class App extends Component {
 
   getTrailer = () => {
     fetch(
-      `http://api.themoviedb.org/3/movie/${
+      `://api.themoviedb.org/3/movie/${
         this.state.movie.id
       }/videos?api_key=6528ff68dbc27d13fb177793f4c69f9d`
     )
@@ -96,7 +96,7 @@ class App extends Component {
       director: {}
     });
     fetch(
-      `http://api.themoviedb.org/3/movie/${
+      `https://api.themoviedb.org/3/movie/${
         movie.id
       }/casts?api_key=6528ff68dbc27d13fb177793f4c69f9d`
     )
