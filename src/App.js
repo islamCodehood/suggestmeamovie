@@ -16,7 +16,7 @@ class App extends Component {
     isLiked: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getMovie();
   }
   shuffle = endNum => {
