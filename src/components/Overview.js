@@ -4,7 +4,7 @@ class Overview extends Component {
     render() {
         const { overview } = this.props
         return (
-            <p className="mt-md-3">{overview}</p>
+            <p className="mt-md-3 small">{overview}</p>
         )
     }
 }

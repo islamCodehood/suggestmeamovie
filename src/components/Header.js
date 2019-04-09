@@ -31,7 +31,7 @@ class Header extends Component {
       <div className={classes.root}>
         <AppBar position="static" color="default" className={classes.appBar}>
           <Toolbar className={classes.menu}>
-            <h1 className="h4">
+            <h1 className="h5">
               Suggest me a movie
             </h1>
             <IconButton onClick={this.handleClick}>

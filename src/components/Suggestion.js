@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import "../App.css";
-import Poster from './Poster'
-import MovieTitle from './MovieTitle'
-import Genres from './Genres'
-import Overview from './Overview'
-import Cast from './Cast'
+import Poster from "./Poster";
+import MovieTitle from "./MovieTitle";
+import Genres from "./Genres";
+import Overview from "./Overview";
+import Cast from "./Cast";
 
 const styles = theme => ({
   root: {
@@ -32,17 +32,26 @@ class Suggestion extends Component {
       genres,
       poster,
       cast,
-      director
+      director,
+      movieId,
+      toggleLike,
+      isLiked
     } = this.props;
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item sm={12} md={4}>
             <div className="mobile-display">
-             <MovieTitle rating={rating} movieTitle={movieTitle} />
+              <MovieTitle rating={rating} movieTitle={movieTitle} />
               <Genres genres={genres} />
             </div>
-            <Poster poster={poster} />
+            <Poster
+              poster={poster}
+              movieTitle={movieTitle}
+              movieId={movieId}
+              toggleLike={toggleLike}
+              isLiked={isLiked}
+            />
           </Grid>
           <Grid item sm={12} md={8} className="text-left">
             <div className="non-mobile-display">

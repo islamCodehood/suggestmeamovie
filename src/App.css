@@ -7,6 +7,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.App {
+  position: relative;
+  width: 100%;
+
+}
 /**************************/
 
 /*Sections*/
@@ -44,7 +50,42 @@ body {
   height: 140px;
   width: 112px;
 }
+.cast-wrapper {
+  height: 400px;
+  min-height: auto;
+}
+/* footer {
+  position: absolute;
+  top: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 
+} */
+.text-footer {
+  font-size: 70% !important;
+  font-weight: 300 !important;
+  color: #222;
+}
+.poster-wrapper {
+  position: relative;
+}
+.poster {
+    position: relative;
+}
+
+.fav-icon {
+  position: absolute;
+  top: 65px;
+  left: 30px;
+}
+
+.cliked-fav-icon {
+  position: absolute;
+  top: 65px;
+  left: 30px;
+}
 
 
 @media screen and (min-width: 768px) {

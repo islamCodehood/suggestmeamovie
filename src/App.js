@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Suggestion from "./components/Suggestion";
+import AppFooter from "./components/AppFooter";
 
 class App extends Component {
   state = {
@@ -11,10 +12,11 @@ class App extends Component {
     genres: [],
     cast: [],
     director: {},
-    posterSrc: ""
+    posterSrc: "",
+    isLiked: false,
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.getMovie();
   }
   shuffle = endNum => {
@@ -144,8 +146,43 @@ class App extends Component {
       });
     }
   };
+
+  toggleLike = () => {
+    if (this.state.isLiked) {
+      this.removeFav(this.state.movie.id)
+    } else {
+      this.saveFav(this.state.movie.id)
+    }
+    this.setState(prevState => ({
+      isLiked: !prevState.isLiked
+    })) 
+  }
+  saveFav = (movieId) => {
+
+    if(typeof(Storage) !== "undefined") {
+      if (localStorage.getItem("favMovies")) {
+        var savedFavs = JSON.parse(localStorage.getItem("favMovies"))
+        console.log(savedFavs)
+        var newSavedFavs = savedFavs.concat(movieId)
+        localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+      } else {
+        var newSavedFavs = [movieId]
+        localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+      }
+      
+    }
+  }
+
+  removeFav = (movieId) => {
+    if(typeof(Storage) !== "undefined") {
+      var savedFavs = JSON.parse(localStorage.getItem("favMovies"))
+      var newSavedFavs =  savedFavs.filter(savedMovieId => movieId !== savedMovieId)
+      localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+    }
+    console.log(savedFavs)
+  }
   render() {
-    const { movie, trailerKey, genres, posterSrc, cast, director } = this.state;
+    const { movie, trailerKey, genres, posterSrc, cast, director, isLiked } = this.state;
     return (
       <div className="App">
         <Header refreshPage={this.getMovie} />
@@ -155,8 +192,8 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={() => (
-                
+              render={() =>{ return  movie && (
+              
                 <Suggestion
                   movieTitle={movie.title}
                   rating={movie.vote_average}
@@ -166,12 +203,17 @@ class App extends Component {
                   cast={cast}
                   director={director}
                   trailerKey={trailerKey}
+                  movieId={movie.id}
+                  toggleLike={this.toggleLike}
+                  isLiked={isLiked}
                 />
                 
-              )}
+              )}}
             />
           </Switch>
         </div>
+        
+        <AppFooter />
       </div>
     );
   }
