@@ -107,14 +107,7 @@ h1 {
 
 
 @media screen and (min-width: 768px) {
-  /* .mobile-display {
-    display: none;
-  }
-  .non-mobile-display {
-    display: block;
-    margin-top: 50px;
-    
-  } */
+
   .non-mobile-display h2 {
     font-size: 2rem !important;
   }

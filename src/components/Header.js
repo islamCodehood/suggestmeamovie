@@ -3,7 +3,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from '@material-ui/core/IconButton';
 import Refresh from "@material-ui/icons/Refresh";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
 
 
 const styles = theme => ({
@@ -23,7 +25,8 @@ const styles = theme => ({
 
 class Header extends Component {
 
-  handleClick = () => this.props.refreshPage()
+  handleRefreshClick = () => this.props.refreshPage()
+  
 
   render() {
     const { classes } = this.props;
@@ -34,9 +37,19 @@ class Header extends Component {
             <h1 className="h5">
               Suggest me a movie
             </h1>
-            <IconButton onClick={this.handleClick}>
-              <Refresh color="action" fontSize="large" />
-            </IconButton>
+            <div>
+
+            <Link to={"/favs"}>
+              <IconButton onClick={this.handleFavsClick}>
+                <FavoriteBorder color="action" fontSize="large" />
+              </IconButton>
+            </Link>
+            <Link to={"/"}>
+              <IconButton onClick={this.handleRefreshClick}>
+                <Refresh color="action" fontSize="large" />
+              </IconButton>
+            </Link>
+            </div>
           </Toolbar>
         </AppBar>
         

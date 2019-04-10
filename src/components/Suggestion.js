@@ -8,6 +8,7 @@ import Genres from "./Genres";
 import Overview from "./Overview";
 import Cast from "./Cast";
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1

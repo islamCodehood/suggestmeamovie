@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Overview extends Component {
-    render() {
-        const { overview } = this.props
+const Overview = (props) => {
+        const { overview } = props
         return (
             <p className="mt-md-3 small">{overview}</p>
         )
-    }
 }
 
 export default Overview

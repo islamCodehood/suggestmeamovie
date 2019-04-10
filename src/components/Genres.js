@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import Chip from "@material-ui/core/Chip";
+import "../Animate.css";
 
-class Genres extends Component {
-    render() {
-        const { genres } = this.props
+const Genres = (props) => {
+        const { genres } = props
         return (
             <div className="my-3">
                 {genres.map(genre => (
@@ -11,12 +11,11 @@ class Genres extends Component {
                     key={genre.id}
                     label={<span className="small">{genre.name}</span>}
                     color="secondary"
-                    className="mr-1"
+                    className="mr-1 animated fadeIn"
                   />
                 ))}
               </div>
         )
-    }
 }
 
 export default Genres

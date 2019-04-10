@@ -4,6 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Suggestion from "./components/Suggestion";
 import AppFooter from "./components/AppFooter";
+import Favs from './components/Favs'
+
 
 class App extends Component {
   state = {
@@ -13,11 +15,15 @@ class App extends Component {
     cast: [],
     director: {},
     posterSrc: "",
-    isLiked: false,
+    favs: []
   };
 
   componentDidMount() {
     this.getMovie();
+    var savedFavs = JSON.parse(localStorage.getItem("favMovies"))
+    this.setState({
+      favs: savedFavs
+    })
   }
   shuffle = endNum => {
     let random = Math.floor(Math.random() * endNum) + 1;
@@ -38,9 +44,13 @@ class App extends Component {
         return movie;
       })
       .then(movie => {
-        this.getPoster(movie);
+        if (movie) {
+          this.getPoster(movie);
         this.getCast(movie);
         this.getGenreList(movie);
+        setTimeout(() => this.checkIfLiked(movie), 5000)
+        
+        }
       })
       .catch(error => {
         console.log(error);
@@ -67,7 +77,7 @@ class App extends Component {
     this.setState({
       posterSrc: ""
     });
-    const posterSrc = `https://image.tmdb.org/t/p/original/${
+    const posterSrc = `https://image.tmdb.org/t/p/w400/${
       movie.poster_path
     }`;
     this.setState({
@@ -107,7 +117,7 @@ class App extends Component {
           const personName = person.name;
           if (personImage && personName) {
             if (this.state.cast.length > 4) {
-              return;
+              return false;
             } else {
               this.setState(prevState => ({
                 cast: prevState.cast.concat({
@@ -147,27 +157,46 @@ class App extends Component {
     }
   };
 
+  checkIfLiked = (movie) => {
+    if (this.state.favs.includes(movie.id)) {
+      this.IsLikedState("liked")
+    } else {
+      this.IsLikedState("unliked")
+    }
+  }
+
+  IsLikedState = (state) => this.setState({
+    isLiked: state,
+  })
+
   toggleLike = () => {
-    if (this.state.isLiked) {
+    if (this.state.isLiked === "liked") {
       this.removeFav(this.state.movie.id)
     } else {
       this.saveFav(this.state.movie.id)
     }
     this.setState(prevState => ({
-      isLiked: !prevState.isLiked
+      isLiked: this.state.isLiked === "liked" ? "unliked": "liked" 
     })) 
   }
   saveFav = (movieId) => {
 
     if(typeof(Storage) !== "undefined") {
       if (localStorage.getItem("favMovies")) {
-        var savedFavs = JSON.parse(localStorage.getItem("favMovies"))
-        console.log(savedFavs)
-        var newSavedFavs = savedFavs.concat(movieId)
-        localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+        this.setState(prevState => ({
+          favs: prevState.favs.concat(movieId)
+        }))
+        setTimeout(() => {
+          localStorage.setItem("favMovies", JSON.stringify(this.state.favs))
+        }, 100)
+        
       } else {
-        var newSavedFavs = [movieId]
-        localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+        this.setState({
+          favs: [movieId]
+        })
+        setTimeout(() => {
+        localStorage.setItem("favMovies", JSON.stringify(this.state.favs))
+      }, 100)
       }
       
     }
@@ -175,14 +204,14 @@ class App extends Component {
 
   removeFav = (movieId) => {
     if(typeof(Storage) !== "undefined") {
-      var savedFavs = JSON.parse(localStorage.getItem("favMovies"))
-      var newSavedFavs =  savedFavs.filter(savedMovieId => movieId !== savedMovieId)
-      localStorage.setItem("favMovies", JSON.stringify(newSavedFavs))
+      this.setState(prevState => ({
+        favs: prevState.favs.filter(savedMovieId => movieId !== savedMovieId)
+      }))
+      localStorage.setItem("favMovies", JSON.stringify(this.state.favs))
     }
-    console.log(savedFavs)
   }
   render() {
-    const { movie, trailerKey, genres, posterSrc, cast, director, isLiked } = this.state;
+    const { movie, trailerKey, genres, posterSrc, cast, director, isLiked, favs } = this.state;
     return (
       <div className="App">
         <Header refreshPage={this.getMovie} />
@@ -209,6 +238,12 @@ class App extends Component {
                 />
                 
               )}}
+            />
+            <Route
+              path="/favs"
+              render={() => (
+                <Favs favedMoviesIds={favs} />
+              )}
             />
           </Switch>
         </div>
