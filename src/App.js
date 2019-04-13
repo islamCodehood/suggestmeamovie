@@ -255,7 +255,6 @@ class App extends Component {
               }}
             />
             <Route
-              exact
               path="/favs"
               render={() => {
                 if (!favs || !favs.length) {
@@ -268,7 +267,6 @@ class App extends Component {
               }}
             />
             <Route
-              exact
               path="/failed-request"
               render={() => (
                 <FailedRequest id="failed" refreshPage={this.getMovie} />
