@@ -4,9 +4,9 @@ import tmdb from "./tmdb.png"
 const AppFooter = () => {
     return (
         <footer>
-           <div className="card-footer text-footer px-5">
-           <div className="row justify-content-between">
-            <div className="col-6">
+           <div className="card-footer text-footer px-md-5">
+           <div className="row justify-content-between no-gutters">
+            <div className="col-8">
                 <p className="my-0">App #1 of 15</p>
                 <p className="my-0">Made with <Favorite fontSize="inherit" color="secondary" /> by <a href="https://www.linkedin.com/in/islam-sayed-ibrahim/">Islam Sayed</a> </p>
             </div>
