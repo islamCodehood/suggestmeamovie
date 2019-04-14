@@ -3,8 +3,6 @@ import "../App.css";
 import "../Animate.css";
 import { withStyles } from "@material-ui/core/styles";
 import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
   img: {
@@ -25,16 +23,15 @@ class Poster extends Component {
           className="img-fluid mt-xs-2 mt-sm-4 mt-lg-5 poster animated fadeIn fast"
           alt={movieTitle}
         />
-        <IconButton
+        <div
           className="fav-icon animated fadeIn slow"
-          onClick={this.handleClick}
+          /* onClick={this.handleClick} */
+          /* size="large" */
         >
           {isLiked === "liked" ? (
-            <Favorite color="secondary" />
-          ) : isLiked === "unliked" ? (
-            <FavoriteBorder color="secondary" />
+            <Favorite color="secondary" fontSize="large" />
           ) : null}
-        </IconButton>
+        </div>
       </div>
     );
   }
