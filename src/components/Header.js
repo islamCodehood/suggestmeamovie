@@ -32,13 +32,13 @@ class Header extends Component {
             <h1 className="h6">Suggest me a movie</h1>
             <div>
               <Link to={"/favs"}>
-                <IconButton onClick={this.handleFavsClick}>
+                <IconButton onClick={this.handleFavsClick} title="Show favourites">
                   <Favorite color="secondary" fontSize="large" />
                 </IconButton>
               </Link>
               <Link to={"/"}>
-                <IconButton onClick={this.handleRefreshClick}>
-                  <Refresh color="action" fontSize="large" />
+                <IconButton onClick={this.handleRefreshClick} title="Suggest again">
+                  <Refresh color="action" fontSize="large"/>
                 </IconButton>
               </Link>
             </div>
