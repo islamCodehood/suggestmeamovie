@@ -17,7 +17,7 @@ class App extends Component {
     cast: [],
     director: {},
     posterSrc: "",
-    favs: []
+    favs: [],
   };
 
   componentDidMount() {
@@ -34,10 +34,13 @@ class App extends Component {
   getMovie = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=6528ff68dbc27d13fb177793f4c69f9d&language=en-US&page=${this.shuffle(
-        990
+        989
       )}`
     )
-      .then(data => data.json())
+      .then(response =>{ 
+        console.log(response.status)
+        return response.json()
+      })
       .then(data => {
         const movie = data.results[`${this.shuffle(20)}`];
         this.setState({
@@ -48,6 +51,7 @@ class App extends Component {
       .then(movie => {
         if (movie) {
           this.getPoster(movie);
+          this.getReleaseYear(movie);
           this.getCast(movie);
           this.getGenreList(movie);
           setTimeout(() => {
@@ -86,14 +90,18 @@ class App extends Component {
   };
 
   getPoster = movie => {
-    this.setState({
-      posterSrc: ""
-    });
     const posterSrc = `https://image.tmdb.org/t/p/w400${movie.poster_path}`;
     this.setState({
       posterSrc
     });
   };
+
+  getReleaseYear = movie => {
+    const releaseYear = movie.release_date.substring(0, 4)
+    this.setState({
+      releaseYear,
+    })
+  }
 
   getCast = movie => {
     this.setState({
@@ -144,6 +152,8 @@ class App extends Component {
         linkToFailedRequest.click();
       });
   };
+
+
   handleClick = () => {
     if (this.state.currentPage === "suggestion") {
       this.setState({
@@ -216,6 +226,7 @@ class App extends Component {
       }, 4000);
     }
   };
+
   render() {
     const {
       movie,
@@ -224,8 +235,10 @@ class App extends Component {
       cast,
       director,
       isLiked,
-      favs
+      favs,
+      releaseYear,
     } = this.state;
+    
     return (
       <div className="App">
         <Header refreshPage={this.getMovie} />
@@ -249,6 +262,7 @@ class App extends Component {
                       movieId={movie.id}
                       toggleLike={this.toggleLike}
                       isLiked={isLiked}
+                      releaseYear={releaseYear}
                     />
                   )
                 );
