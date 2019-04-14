@@ -8,7 +8,6 @@ import Genres from "./Genres";
 import Overview from "./Overview";
 import Cast from "./Cast";
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -36,14 +35,21 @@ class Suggestion extends Component {
       director,
       movieId,
       toggleLike,
-      isLiked
+      isLiked,
+      releaseYear
     } = this.props;
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item sm={12} md={4}>
             <div className="mobile-display">
-              <MovieTitle rating={rating} movieTitle={movieTitle} />
+              <MovieTitle
+                rating={rating}
+                movieTitle={movieTitle}
+                isLiked={isLiked}
+               toggleLike={toggleLike}
+               releaseYear={releaseYear}
+              />
               <Genres genres={genres} />
             </div>
             <Poster
@@ -56,7 +62,12 @@ class Suggestion extends Component {
           </Grid>
           <Grid item sm={12} md={8} className="text-left">
             <div className="non-mobile-display">
-              <MovieTitle rating={rating} movieTitle={movieTitle} />
+              <MovieTitle
+                rating={rating}
+                movieTitle={movieTitle}
+                toggleLike={toggleLike}
+                releaseYear={releaseYear}
+              />
               <Genres genres={genres} />
             </div>
             <Overview overview={overview} />
