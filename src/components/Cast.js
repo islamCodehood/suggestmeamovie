@@ -18,6 +18,9 @@ const Cast = (props) => {
             <Typography variant="caption">
               {member.personName}
             </Typography>
+            <div className="character">
+              {member.character}
+            </div>
           </Grid>
         ))}
         <Grid key={director.directorImage} item xs={4} sm={2}>
@@ -29,6 +32,9 @@ const Cast = (props) => {
           <Typography variant="caption">
             {director.directorName}
           </Typography>
+          <div className="character">
+              Director
+            </div>
         </Grid>
       </Grid>
     );
