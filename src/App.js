@@ -120,6 +120,7 @@ class App extends Component {
         data.cast.map(person => {
           const personImage = person.profile_path;
           const personName = person.name;
+          const character = person.character;
           if (personImage && personName) {
             if (this.state.cast.length > 4) {
               return false;
@@ -127,7 +128,8 @@ class App extends Component {
               this.setState(prevState => ({
                 cast: prevState.cast.concat({
                   personImage,
-                  personName
+                  personName,
+                  character,
                 })
               }));
             }
