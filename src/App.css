@@ -116,6 +116,13 @@ a:hover {
   overflow: hidden;
 }
 
+.character {
+  font-weight: 200;
+  font-size: 0.75rem;
+  color: darkcyan;
+
+}
+
 @media screen and (min-width: 375px) {
   h1 {
     font-size: 1.25rem !important;
