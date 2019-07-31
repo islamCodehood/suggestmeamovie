@@ -38,13 +38,10 @@ class App extends Component {
       )}`
     )
       .then(response =>{ 
-        console.log(response.status)
         return response.json()
       })
       .then(data => {
-        console.log(data.results)
         const movie = data.results[`${this.shuffle(data.results.length)}`];
-        console.log(movie)
         this.setState({
           movie
         });
@@ -221,7 +218,6 @@ class App extends Component {
 
   removeFav = movieId => {
     if (typeof Storage !== "undefined") {
-      console.log(this.state.favs, movieId);
       const movieIdNumber = Number(movieId);
       this.setState(prevState => ({
         favs: prevState.favs.filter(
