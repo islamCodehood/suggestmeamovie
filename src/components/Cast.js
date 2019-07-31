@@ -23,19 +23,15 @@ const Cast = (props) => {
             </div>
           </Grid>
         ))}
-        <Grid key={director.directorImage} item xs={4} sm={2}>
-        {director.directorImage && <img
-            src={`https://image.tmdb.org/t/p/w200${director.directorImage}`}
-            className="img-fluid cast"
-            alt={director.directorName}
-        /> }
-          <Typography variant="caption">
-            {director.directorName}
-          </Typography>
-          <div className="character">
-              Director
-            </div>
-        </Grid>
+        
+        {
+          director.directorName ? <Grid key={director.directorImage} item xs={4} sm={2}> <img src={`https://image.tmdb.org/t/p/w200${director.directorImage}`} className="img-fluid cast" alt={director.directorName} /> <Typography variant="caption">
+          {director.directorName}
+        </Typography>
+        <div className="character">
+            Director
+          </div> </Grid>: null
+        }         
       </Grid>
     );
   }
