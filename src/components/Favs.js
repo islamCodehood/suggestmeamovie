@@ -21,7 +21,7 @@ class Favs extends Component {
             linkToFailedRequest.click();
           })
       );
-    }, 3000);
+    }, 1000);
   }
 
   state = {
