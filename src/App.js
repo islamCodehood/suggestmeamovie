@@ -28,7 +28,7 @@ class App extends Component {
     });
   }
   shuffle = endNum => {
-    let random = Math.floor(Math.random() * endNum) + 1;
+    let random = Math.floor(Math.random() * endNum);
     return random;
   };
   getMovie = () => {
@@ -42,7 +42,9 @@ class App extends Component {
         return response.json()
       })
       .then(data => {
-        const movie = data.results[`${this.shuffle(20)}`];
+        console.log(data.results)
+        const movie = data.results[`${this.shuffle(data.results.length)}`];
+        console.log(movie)
         this.setState({
           movie
         });
@@ -58,7 +60,10 @@ class App extends Component {
             if (this.state.favs) {
               this.checkIfLiked(movie);
             }
-          }, 2000);
+          }, 0);
+        } else {
+          const linkToFailedRequest = document.getElementById("failed-request");
+          linkToFailedRequest.click();
         }
       })
       .catch(error => {
