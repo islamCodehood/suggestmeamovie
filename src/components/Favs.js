@@ -34,7 +34,6 @@ class Favs extends Component {
       movies: prevState.movies.filter(movie => movie.movieId !== targetId)
     }));
     if (!e.target.id) {
-      console.log(typeof e.target.parentElement.id);
       this.props.unlikeFav(e.target.parentElement.id);
     } else {
       this.props.unlikeFav(e.target.id);
