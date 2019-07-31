@@ -15,9 +15,9 @@ const Cast = (props) => {
               className="img-fluid cast animated fadeIn fast"
               alt={member.personName}
             />
-            <Typography variant="caption">
+            <div className="character realName">
               {member.personName}
-            </Typography>
+            </div>
             <div className="character">
               {member.character}
             </div>
