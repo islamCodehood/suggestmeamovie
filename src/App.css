@@ -70,7 +70,7 @@ a:hover {
 .poster-wrapper {
   position: relative;
   width: inherit;
-  min-height: 593px;
+  min-height: auto;
 }
 .poster {
   position: relative;
@@ -118,9 +118,12 @@ a:hover {
 
 .character {
   font-weight: 200;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: darkcyan;
-
+  letter-spacing: 0.5px;
+}
+.realName {
+  color: #000;
 }
 
 @media screen and (min-width: 375px) {
@@ -172,5 +175,6 @@ a:hover {
 @media screen and (min-width: 1024px) {
   .views {
     width: 80vw;
+    min-height: 90vh;
   }
 }
