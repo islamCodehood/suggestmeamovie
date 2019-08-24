@@ -34,7 +34,7 @@ class App extends Component {
   getMovie = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=6528ff68dbc27d13fb177793f4c69f9d&language=en-US&page=${this.shuffle(
-        989
+        500
       )}`
     )
       .then(response =>{ 
